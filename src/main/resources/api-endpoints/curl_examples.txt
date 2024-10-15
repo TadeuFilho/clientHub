@@ -1,0 +1,35 @@
+Find customer by id:
+
+    curl --location 'http://localhost:8080/customers/1'
+
+Find all customers:
+
+    curl --location 'http://localhost:8080/customers'
+
+Create customer:
+
+    curl --location 'http://localhost:8080/customers' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+
+        "name": "Mike Portnoy",
+        "email": "mike.portnoy@example.com",
+        "phone": "888-666",
+        "zipcode": "20921060"
+    }'
+
+Delete customer by id:
+
+    curl --location --request DELETE 'http://localhost:8080/customers/2'
+
+Update customer by id:
+
+    curl --location --request PUT 'http://localhost:8080/customers/5' \
+    --header 'Content-Type: application/json' \
+    --data-raw '{
+
+        "name": "John Myung",
+        "email": "john.myung@example.com",
+        "phone": "888-1234",
+        "zipcode": "26540110"
+    }'

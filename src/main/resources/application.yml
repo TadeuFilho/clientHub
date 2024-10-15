@@ -1,0 +1,49 @@
+spring:
+  application:
+    name: clientHub
+
+  jpa:
+    hibernate:
+      ddl-auto: none
+    open-in-view: false
+
+  datasource:
+    url: ${MYSQL_URL:jdbc:mysql://localhost:3306/clientHub}
+    username: ${MYSQL_USERNAME:user}
+    password: ${MYSQL_PASSWORD:password}
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      maximum-pool-size: 2
+      minimum-idle: 1
+      idle-timeout: 30000
+      max-lifetime: 120000
+      connection-timeout: 10000
+
+  flyway:
+    url: jdbc:mysql://localhost:3306/clientHub
+    user: user
+    password: password
+    locations:
+      - classpath:db/migration
+      - classpath:db/testdata
+
+    springdoc:
+      swagger-ui:
+        path: /swagger-ui.html
+      api-docs:
+        path: /v3/api-docs
+        group: my-api
+
+swagger:
+  license:
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  external:
+    docs:
+      url: http://localhost:8080/swagger-ui.html
+
+feign:
+  client:
+    address:
+      integration:
+        name: viacep
+        url: https://viacep.com.br/ws/
